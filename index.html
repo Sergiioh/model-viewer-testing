@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Grogu | The Child - Vidit AR</title>
+    <meta property="og:title" content="Vidit AR - Grogu | The Child" />
+    <meta property="og:site_name" content="Vidit AR" />
+    <meta property="og:image" content="img/thumbnail.png" />
+    <link rel="shortcut icon" href="img/thumbnail.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- Import the component -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="css/ThreeDViewer.css" />
+</head>
+<body>
+    <div id="root">
+    
+      <div id="ThreeDViewer">
+        <model-viewer 
+          id="model-viewer"
+          alt="Grogu | The Child"
+          class="vidit-augmented-reality-model-viewer"
+          background-color="#eee"
+          camera-controls="true"
+          poster="http://viibucket2.s3-us-west-1.amazonaws.com/Viidit2/3d/d/91/d91a0104ca314f91b17d90345fe6089d.png"
+          src="models/744b0e7355a94502b7fda685e60d287e/model.glb"
+          ios-src="models/b755efc8ac8648fab94e70efe74e274b/model.usdz"
+          ar-modes="webxr scene-viewer quick-look"
+          quick-look-browsers="safari chrome firefox"
+          autoplay="true"
+          auto-rotate 
+          ar 
+          magic-leap>
+          <div id="ar-button" slot="ar-button" class="button">
+            <span>View in your space</span>
+          </div>
+        </model-viewer>
+      </div>
+        
+        <style>
+          .button
+          {
+            display: flex;
+            flex-direction: column-reverse;
+            background-color: aquamarine;
+          }
+        </style>
+    </div>
+
+    <model-viewer 
+    id="model-viewer3" 
+    src="models/744b0e7355a94502b7fda685e60d287e/model.glb" 
+    ar="" 
+    ar-modes="scene-viewer webxr" 
+    ar-scale="auto" 
+    camera-controls="" 
+    alt="A 3D model of an astronaut" 
+    data-js-focus-visible="" 
+    ar-status="not-presenting">
+    </model-viewer>
+    <script>
+      document.querySelector("#model-viewer3").addEventListener('ar-status', (event) => {
+        if(event.detail.status === 'failed'){
+          const error = document.querySelector("#error");
+          error.classList.remove('hide');
+          error.addEventListener('transitionend',(event) => {
+            error.classList.add('hide');
+          });
+        }
+      });
+    </script>
+    <style>
+      #error {
+        background-color: #ffffffdd;
+        border-radius: 16px;
+        padding: 16px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        transition: opacity 0.3s;
+      }
+      #error.hide {
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 2s, opacity 1s 1s;
+      }
+    </style>
+
+    <model-viewer 
+    src="models/744b0e7355a94502b7fda685e60d287e/model.glb" 
+    ar
+    ar-modes="webxr scene-viewer quick-look" 
+    ar-scale="auto" 
+    camera-controls
+    alt="A 3D model of an astronaut" 
+    ios-src="models/b755efc8ac8648fab94e70efe74e274b/model.usdz" 
+    data-js-focus-visible ar-status="not-presenting"></model-viewer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
+    <!-- Vidit Augmented Reality 3D Viewer -->
+    <script src="/js/ThreeDViewer.js"></script>
+
+    <!-- Loads <model-viewer> for modern browsers: -->
+      <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</body>
+</html>
